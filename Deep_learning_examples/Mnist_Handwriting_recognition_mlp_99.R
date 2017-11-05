@@ -1,4 +1,4 @@
-install.packages('rmarkdown', repos='http://cran.us.r-project.org')
+# install.packages('rmarkdown', repos='http://cran.us.r-project.org')
 
 
 # install.packages("keras", repos='http://cran.us.r-project.org')
@@ -34,14 +34,13 @@ summary(model)
 
 model %>% compile(
   loss = "categorical_crossentropy",
-  optimizer = optimizer_rmsprop(lr = 0.01, rho = 0.9, epsilon = 1e-08, decay = 0,
-                                clipnorm = -1, clipvalue = -1),
+  optimizer = "adagrad",
   metrics = c("accuracy")
 )
 
 history <- model %>% fit(
   x_train, y_train, 
-  epochs = 40, batch_size = 128, 
+  epochs = 30, batch_size = 128, 
   validation_split = 0.2
 )
 
