@@ -17,7 +17,6 @@ dim(x_test) <- c(nrow(x_test), 784)
 # rescale
 x_train <- x_train / 255
 x_test <- x_test / 255
-
 y_train <- to_categorical(y_train, 10)
 y_test <- to_categorical(y_test, 10)
 
@@ -31,15 +30,18 @@ model %>%
 
 summary(model)
 
+#increase the learning rate of the current optimizer being used
+
 model %>% compile(
   loss = "categorical_crossentropy",
-  optimizer = optimizer_rmsprop(),
+  optimizer = optimizer_rmsprop(lr = 0.01, rho = 0.9, epsilon = 1e-08, decay = 0,
+                                clipnorm = -1, clipvalue = -1),
   metrics = c("accuracy")
 )
 
 history <- model %>% fit(
   x_train, y_train, 
-  epochs = 30, batch_size = 128, 
+  epochs = 40, batch_size = 128, 
   validation_split = 0.2
 )
 
