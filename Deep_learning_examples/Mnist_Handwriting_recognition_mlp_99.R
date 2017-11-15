@@ -15,7 +15,7 @@ y_test <- mnist$test$y
 dim(x_train) <- c(nrow(x_train), 784)
 dim(x_test) <- c(nrow(x_test), 784)
 # rescale
-x_train <- x_train / 255
+x_train <- x_train / 255 
 x_test <- x_test / 255
 y_train <- to_categorical(y_train, 10)
 y_test <- to_categorical(y_test, 10)
